@@ -3,7 +3,7 @@
 %% CWID: 10394963
 
 % Load the color JPEG image from the directory into a 3D array
-I = imread('/Users/wyf920621/Documents/Computer_Vision/project0/TEST.jpg');
+I = imread('SOURCE.jpg');
 figure('name', 'Origin Image'); % Create Figure 1
 imshow(I); % Display the image in Figure 1 on the screen
 
