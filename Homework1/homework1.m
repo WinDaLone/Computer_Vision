@@ -52,6 +52,4 @@ for i = 1:4649
     end
 end
 
-dlmwrite('test_data_out.out', testRes, ';');
-type test_data_out.out
-
+dlmwrite('testY.txt', testRes, ';');
