@@ -1,8 +1,6 @@
-% Input image
-src = imread('uttower_right.jpg');
-img = rgb2gray(src);
+function res = CornerDetector(img)
 img = im2double(img);
-
+% Input image
 threshold = 0.05; % Initialize the threshold
 a = 0.04; % Initialize alpha as 0.04
 sigma = 1; % Initialize sigma as 1
@@ -50,45 +48,5 @@ end
 % Find local maxima of response function
 out = res > imdilate(res, [1 1 1;1 0 1;1 1 1]);
 
-dot = zeros(size(src,1),size(src,2),size(src,3),'uint8');
-count = 0;
-for i=1:size(out,1)
-    for j=1:size(out,2)
-        if out(i,j) == 1
-            count = count + 1;
-            % Paint the (3 x 3) field to make the dot more clear
-            if (i > 1 && j > 1)
-                dot(i-1,j-1,1) = 255;
-            end
-            if (i > 1)
-                dot(i-1,j,1) = 255;
-            end
-            if (i > 1 && j < size(out,2))
-                dot(i-1,j+1,1) = 255;
-            end
-            if (j > 1)
-                dot(i,j-1,1) = 255;
-            end
-            
-            dot(i,j,1) = 255;
-            
-            if (j < size(out,2))
-                dot(i,j+1,1) = 255;
-            end
-            if (i < size(out,1) && j > 1)
-                dot(i+1,j-1,1) = 255;
-            end
-            if (i < size(out,1))
-                dot(i+1,j,1) = 255;
-            end
-            if (i < size(out,1) && j < size(out,2))
-                dot(i+1,j+1,1) = 255;
-            end
-        end
-    end
+res = out;
 end
-
-finalImg = dot + src;
-figure;
-imshow(finalImg);
-imwrite(finalImg, 'result.jpeg');
